@@ -1,17 +1,17 @@
 #include<iostream>
 #include"CircularQue.h"
-//°úÁ¦ ÃÖÃÊ·ÎÇÒ ¶§ ¸¸µé¾ú´ø Å×½ºÆ® ÄÚµå
+//ê³¼ì œ ìµœì´ˆë¡œí•  ë•Œ ë§Œë“¤ì—ˆë˜ í…ŒìŠ¤íŠ¸ ì½”ë“œ
 
 
 template <typename T>
 void EnQueControl(CircularQue<T>& Q, int m) {
 	int n;
 	for (int i = 1; i <= m; i++) {
-		std::cout << i << "¹øÂ° ÀÔ·ÂÀÔ´Ï´Ù. ÀÔ·Â È½¼ö´Â " << m - i + 1 << "¹ø ³²¾Ò½À´Ï´Ù.";
+		std::cout << i << "ë²ˆì§¸ ì…ë ¥ì…ë‹ˆë‹¤. ì…ë ¥ íšŸìˆ˜ëŠ” " << m - i + 1 << "ë²ˆ ë‚¨ì•˜ìŠµë‹ˆë‹¤.";
 		std::cin >> n;
 
 		if (!IsFull())Q.EnQue(n);
-		else throw("Áö±İ Que°¡ ²Ë Ã¡½À´Ï´Ù. È®ÀÎ ºÎÅ¹µå¸³´Ï´Ù.");
+		else throw("ì§€ê¸ˆ Queê°€ ê½‰ ì°¼ìŠµë‹ˆë‹¤. í™•ì¸ ë¶€íƒë“œë¦½ë‹ˆë‹¤.");
 	}
 
 }
@@ -20,17 +20,17 @@ void DeQueControl(CircularQue<T>& Q, int m) {
 	int n;
 	for (int i = 1; i <= m; i++) {
 		Q.DeQue(n);
-		std::cout << "°ªÀº " << n << "ÀÔ´Ï´Ù. " << i << "¹øÂ° Ãâ·ÂÀÔ´Ï´Ù. Ãâ·Â È½¼ö´Â " << m - i << "¹ø ³²¾Ò½À´Ï´Ù." << std::endl;
+		std::cout << "ê°’ì€ " << n << "ì…ë‹ˆë‹¤. " << i << "ë²ˆì§¸ ì¶œë ¥ì…ë‹ˆë‹¤. ì¶œë ¥ íšŸìˆ˜ëŠ” " << m - i << "ë²ˆ ë‚¨ì•˜ìŠµë‹ˆë‹¤." << std::endl;
 
 		if (!IsEmpty())Q.DeQue(n);
-		else throw("Áö±İ Que°¡ ºñ¾î ÀÖ½À´Ï´Ù. È®ÀÎ ºÎÅ¹µå¸³´Ï´Ù.");
+		else throw("ì§€ê¸ˆ Queê°€ ë¹„ì–´ ìˆìŠµë‹ˆë‹¤. í™•ì¸ ë¶€íƒë“œë¦½ë‹ˆë‹¤.");
 	}
 
 
 }
 
 int main() {
-	CircularQue<int> C;//Å©±â°¡ 10Â¥¸® CircularQue·Î Á¤ÀÇµÊ. ¿øÀ» ±×·Áº¸¸ç »ı°¢ÇØº¸±â. 
+	CircularQue<int> C;//í¬ê¸°ê°€ 10ì§œë¦¬ CircularQueë¡œ ì •ì˜ë¨. ì›ì„ ê·¸ë ¤ë³´ë©° ìƒê°í•´ë³´ê¸°. 
 
 	EnQueControl(C, 8);//0~7 8
 	DeQueControl(C, 4);//4~7 4
