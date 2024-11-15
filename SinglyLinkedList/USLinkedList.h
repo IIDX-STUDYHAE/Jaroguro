@@ -1,4 +1,4 @@
-//US´Â Unsorted, SinglyLinked¸¦ ÀÇ¹ÌÇÕ´Ï´Ù
+//USëŠ” Unsorted, SinglyLinkedë¥¼ ì˜ë¯¸í•©ë‹ˆë‹¤
 #ifndef _USLINKEDLIST_H
 #define _USLINKEDLIST_H
 #include"nodeType.h"
@@ -13,13 +13,13 @@ public:
 	bool IsEmpty() { return Length == 0; }
 	int GetLength() const { return Length; }
 	void Add(ItemType item);
-	void ResetList();//listÀÇ Æ÷ÀÎÅÍ¸¦ ¸Ç¾ÕÀ¸·Î. 
-	//Æ÷ÀÎÅÍ¸¦ ÇÑ Ä­ ÀÌµ¿½ÃÅ² ´ÙÀ½¿¡, ±× Æ÷ÀÎÅÍ ¾È¿¡ ÀÖ´Â data¸¦ ÆÄ¶ó¹ÌÅÍ ¾È¿¡ ³ÖÀº º¯¼ö·Î.
-	bool GetNextItem(ItemType& item);//¼º°øÇÏ¸é true ½ÇÆĞÇÏ¸é false
+	void ResetList();//listì˜ í¬ì¸í„°ë¥¼ ë§¨ì•ìœ¼ë¡œ. 
+	//í¬ì¸í„°ë¥¼ í•œ ì¹¸ ì´ë™ì‹œí‚¨ ë‹¤ìŒì—, ê·¸ í¬ì¸í„° ì•ˆì— ìˆëŠ” dataë¥¼ íŒŒë¼ë¯¸í„° ì•ˆì— ë„£ì€ ë³€ìˆ˜ë¡œ.
+	bool GetNextItem(ItemType& item);//ì„±ê³µí•˜ë©´ true ì‹¤íŒ¨í•˜ë©´ false
 private:
-	NodeType* F_List;//Ã¹¹øÂ° °ª
+	NodeType* F_List;//ì²«ë²ˆì§¸ ê°’
 	NodeType* Cur_Pointer;//iterator
-	int Length;//³ëµåÀÇ °³¼ö
+	int Length;//ë…¸ë“œì˜ ê°œìˆ˜
 
 };
 
@@ -50,11 +50,11 @@ void USLinkedList::Add(ItemType item) {
 	node->data = item;
 	node->next = nullptr;
 
-	//list¿¡ node°¡ Á¸ÀçÇÏÁö ¾Ê´Â °æ¿ì
+	//listì— nodeê°€ ì¡´ì¬í•˜ì§€ ì•ŠëŠ” ê²½ìš°
 	if (IsEmpty()) this->F_List = node;
 	else {
 		Cur_Pointer = F_List;
-		//°¡Àå ¸¶Áö¸· node·Î ÀÌµ¿.
+		//ê°€ì¥ ë§ˆì§€ë§‰ nodeë¡œ ì´ë™.
 		while (1) {
 
 
@@ -69,8 +69,8 @@ void USLinkedList::Add(ItemType item) {
 }
 
 
-//Ç×»ó ¸®¼Â=nullptr·Î ÇØÁØ´Ù°í »ı°¢ÇÑ µÚ¿¡, ÇÑÄ­¾¿ ÀÌµ¿ÇÏ´Â µ¿ÀÛÀ» ÃëÇÒ ¶§ 
-// Cur_Pointer=nullptrÀÌ¸é First·Î ÀÌ²ø¾îÁà¾ß.
+//í•­ìƒ ë¦¬ì…‹=nullptrë¡œ í•´ì¤€ë‹¤ê³  ìƒê°í•œ ë’¤ì—, í•œì¹¸ì”© ì´ë™í•˜ëŠ” ë™ì‘ì„ ì·¨í•  ë•Œ 
+// Cur_Pointer=nullptrì´ë©´ Firstë¡œ ì´ëŒì–´ì¤˜ì•¼.
 void USLinkedList::ResetList() { Cur_Pointer = nullptr; }
 
 bool USLinkedList::GetNextItem(ItemType& item) {
@@ -79,7 +79,7 @@ bool USLinkedList::GetNextItem(ItemType& item) {
 	else if (Cur_Pointer->next == nullptr) return false;
 	else Cur_Pointer = Cur_Pointer->next;
 
-	//¸®¼ÂÀÌ First°ªÀÌ ¾Æ´Ñ null°ªÀÌ´Ï, ¸ÕÀú ÀÌµ¿ ÈÄ °ª¹èÃâÇÒ ¶§ µû·Î ¿¹¿ÜÃ³¸® ÇÒ °ÍÀÌ ¾øÀ½.
+	//ë¦¬ì…‹ì´ Firstê°’ì´ ì•„ë‹Œ nullê°’ì´ë‹ˆ, ë¨¼ì € ì´ë™ í›„ ê°’ë°°ì¶œí•  ë•Œ ë”°ë¡œ ì˜ˆì™¸ì²˜ë¦¬ í•  ê²ƒì´ ì—†ìŒ.
 	item = Cur_Pointer->data;
 	return true;
 }
