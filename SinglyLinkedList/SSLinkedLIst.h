@@ -12,14 +12,14 @@ public:
 	void MakeEmpty();
 	bool IsEmpty() { return Length == 0; }
 	int GetLength() const;//howmany??
-	//µû·Î ¸Þ¸ð¸® ÀÌ·±°Å¿¡ Á¦¾àÀÌ ¿ÀÁö ¾Ê´Â´Ü °¡Á¤ÇÏ¿¡ µû·Î ¸®ÅÏ°ªÀº ÇÊ¿ä ¾ø°ÚÁö¸¸ ¸î ¹øÂ° ÀÚ¸®¿¡´Ù°¡ ³Ö¾ú´ÂÁö¸¦ ¸®ÅÏÇÏ°ÚÀ½
+	//ë”°ë¡œ ë©”ëª¨ë¦¬ ì´ëŸ°ê±°ì— ì œì•½ì´ ì˜¤ì§€ ì•ŠëŠ”ë‹¨ ê°€ì •í•˜ì— ë”°ë¡œ ë¦¬í„´ê°’ì€ í•„ìš” ì—†ê² ì§€ë§Œ ëª‡ ë²ˆì§¸ ìžë¦¬ì—ë‹¤ê°€ ë„£ì—ˆëŠ”ì§€ë¥¼ ë¦¬í„´í•˜ê² ìŒ
 	int Add(ItemType item);
-	void ResetList();//iterator null·Î reset.
-	bool GetNextItem(ItemType& item);//++iteratorÀÇ ¿ªÇÒµµ °âÇÔ. ¼º°øÇÏ¸é true ½ÇÆÐ(¸¶Áö¸· °ª¿¡ À§Ä¡)ÇÏ¸é false
+	void ResetList();//iterator nullë¡œ reset.
+	bool GetNextItem(ItemType& item);//++iteratorì˜ ì—­í• ë„ ê²¸í•¨. ì„±ê³µí•˜ë©´ true ì‹¤íŒ¨(ë§ˆì§€ë§‰ ê°’ì— ìœ„ì¹˜)í•˜ë©´ false
 	
 public:
-	NodeType* F_List;//Ã¹ ³ëµå°ª
-	NodeType* Cur_Pointer;//ÀÌÅÍ·¹ÀÌÅÍ
+	NodeType* F_List;//ì²« ë…¸ë“œê°’
+	NodeType* Cur_Pointer;//ì´í„°ë ˆì´í„°
 	int Length;
 
 };
@@ -43,7 +43,7 @@ int SSLinkedList::GetLength() const {
 	return Length;
 }
 
-//°á°ú°ªÀ¸·Î '¸î ¹øÂ°¿¡ ³Ö¾ú´ÂÁö ¾Ë·ÁÁÖ´Â °Íµµ °¡²û ¾µ¸ð°¡ ÀÖÀ» ¼öµµ???
+//ê²°ê³¼ê°’ìœ¼ë¡œ 'ëª‡ ë²ˆì§¸ì— ë„£ì—ˆëŠ”ì§€ ì•Œë ¤ì£¼ëŠ” ê²ƒë„ ê°€ë” ì“¸ëª¨ê°€ ìžˆì„ ìˆ˜ë„???
 int SSLinkedList::Add(ItemType item) {
 	ResetList();
 
@@ -57,7 +57,7 @@ int SSLinkedList::Add(ItemType item) {
 	newitem->next = nullptr;
 
 
-	//¸Ç ¾Õ¿¡ ³Ö¾î¾ß ÇÒ °æ¿ì¿¡ ´ëÇØ ¿¹¿ÜÃ³¸®
+	//ë§¨ ì•žì— ë„£ì–´ì•¼ í•  ê²½ìš°ì— ëŒ€í•´ ì˜ˆì™¸ì²˜ë¦¬
 	if (IsEmpty()) F_List = newitem;
 
 	else if (F_List->data >= item) {
@@ -68,17 +68,17 @@ int SSLinkedList::Add(ItemType item) {
 	else {
 		while (1) {
 			preitem = Cur_Pointer;
-			GetNextItem(dummy);//ÀÌ°Ô Æ÷ÀÎÅÍ 1Ä­ ÀÌµ¿ ¿¬»êÀ» °âÇÔ. ¿¬»êÇÏ¸é¼­ µ¿½Ã¿¡ ÀúÀåµµ ÇÊ¿ä.
-			C++;//Æ÷ÀÎÅÍ°¡ ÇÑ Ä­ ÀÌµ¿ÇÏ¿´À½.
+			GetNextItem(dummy);//ì´ê²Œ í¬ì¸í„° 1ì¹¸ ì´ë™ ì—°ì‚°ì„ ê²¸í•¨. ì—°ì‚°í•˜ë©´ì„œ ë™ì‹œì— ì €ìž¥ë„ í•„ìš”.
+			C++;//í¬ì¸í„°ê°€ í•œ ì¹¸ ì´ë™í•˜ì˜€ìŒ.
 			if (dummy > item)
 			{
 				newitem->next = Cur_Pointer;
 				preitem->next = newitem;
-				//dangling pointer Çö»óÀÌ ³ªÅ¸³¯ °ÆÁ¤ÀÌ Á¤¸» Àû´Ù. 
-				//DoublyLinkedList¿¡¼± ¼ø¼­ ÇÏ³ªÇÏ³ª Áß¿äÇÏ´Ï ¹Ì¸® ³í¸®Àû ±¦ÂúÀº ¼ø¼­ »ý°¢ÇØº¸´Â °Íµµ ±¦ÂúÀºµí
+				//dangling pointer í˜„ìƒì´ ë‚˜íƒ€ë‚  ê±±ì •ì´ ì •ë§ ì ë‹¤. 
+				//DoublyLinkedListì—ì„  ìˆœì„œ í•˜ë‚˜í•˜ë‚˜ ì¤‘ìš”í•˜ë‹ˆ ë¯¸ë¦¬ ë…¼ë¦¬ì  ê´œì°®ì€ ìˆœì„œ ìƒê°í•´ë³´ëŠ” ê²ƒë„ ê´œì°®ì€ë“¯
 				break;
 			}
-			else if (Cur_Pointer->next == nullptr) //¸Ç µÚ¿¡ ³Ö´Â ¿¹¿Ü»óÈ²
+			else if (Cur_Pointer->next == nullptr) //ë§¨ ë’¤ì— ë„£ëŠ” ì˜ˆì™¸ìƒí™©
 			{
 				Cur_Pointer->next = newitem;
 				break;
