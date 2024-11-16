@@ -1,0 +1,37 @@
+#ifndef DLINKEDLIST_H
+#define DLINKEDLIST_H
+
+typedef int ItemType;
+
+
+class DoublyIterator;// 전방 선언
+
+struct DoublyNodeType {
+    ItemType data;
+    DoublyNodeType* front;
+    DoublyNodeType* back;
+};
+
+class DoublyLinkedList {
+    friend class DoublyIterator;//Iterator을 유연하게 활용하기 위해 따로 friend Class로 만들어줌.
+
+public:
+    DoublyLinkedList();
+    ~DoublyLinkedList();
+    DoublyIterator CreateIterator();//Return값으로 DoublyIterator하나를 생성하고 반환
+    bool IsEmpty() { return Length == 0; }
+    bool IsFull();
+    void makeEmpty();
+    int GetLength() const { return Length; }
+    void Add(ItemType item);
+    int Delete(ItemType item);
+
+private:
+    DoublyNodeType* F_List;//처음꺼
+    DoublyNodeType* L_List;//Lastone
+    int Length;//FirstNode와 LastNode는 노드의 개수로 치지 않음.
+};
+
+
+
+#endif 
