@@ -166,7 +166,7 @@ TreeType::TreeType(const TreeType& T) {
 int main() {
 	std::random_device R;
 	std::mt19937 gen(R());
-	std::uniform_int_distribution<> dis(1, 50);//값 임의 조정
+	std::uniform_int_distribution<> dis(1, 500);//값 임의 조정
 
 
 	TreeType T;
